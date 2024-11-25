@@ -1,8 +1,9 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import Fade from "../components/Fade.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import Yeet from "../components/odessey";
+import Odessey from "../components/odessey";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
@@ -10,11 +11,32 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      });
+
+      document.querySelectorAll(".hidden").forEach((element) => {
+        observer.observe(element);
+      });
+    </script>
   </head>
   <body>
     <Header />
     <main>
-        <Yeet client:load></Yeet>
+      <Odessey client:load />
+      <div class="main-content">
+        <Fade direction="top">
+          <h1>Education. But refined.</h1>
+          <Fade direction="bottom">
+            <p>Unlock your potential with our learning platform.</p>
+          </Fade>
+        </Fade>
+      </div>
     </main>
     <Footer />
   </body>
@@ -31,5 +53,23 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       height: 100%;
       width: 100%;
     }
+  }
+
+  h1 {
+    margin: 0;
+    line-height: 1;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .main-content {
+    color: white;
+    width: 100%;
+    height: 100dvh;
+    display: grid;
+    place-items: center;
+    margin: 0;
   }
 </style>

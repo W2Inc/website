@@ -24,7 +24,7 @@ const MyComponent = ({  }) => {
   const getClonedTexture = () => clonedTexture;
 
   useFrame((_, delta) => {
-    const speed = 0.1;
+    const speed = 0.06;
     const wt = getWarpTexture();
     if (wt) wt.offset.x += speed * delta;
     const ct = getClonedTexture();
@@ -34,7 +34,7 @@ const MyComponent = ({  }) => {
   const heightIterations = 5;
   const height = 40;
   const offset = 0.2;
-  const gap = 4.55;
+  const gap = 4.5;
   const rotationInDegrees = 85;
 
   const MyGeometry = useMemo(() => {
