@@ -5,15 +5,46 @@
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--blue: #3aa2db;
+	--indigo: #6610f2;
+	--purple: #b73188;
+	--pink: #e83e8c;
+	--red: #e52a2d;
+	--orange: #ea5c28;
+	--yellow: #f2911a;
+	--green: #32b796;
+	--teal: #20c997;
+	--cyan: #17a2b8;
+
+	--box-shadow: 0 2px 6px rgba(var(--gray), 25%),
+		0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
+
+	--wui-shade-01: hsl(0, 0%, 91%);
+	--wui-shade-02: hsl(0, 0%, 85%);
+	--wui-shade-03: hsl(0, 0%, 75%);
+	--wui-shade-04: hsl(0, 0%, 65%);
+	--wui-shade-05: hsl(0, 0%, 54%);
+
+	--wui-text-01: hsl(0, 0%, 13%);
+	--wui-text-02: hsl(0, 0%, 27%);
+	--wui-text-03: hsl(240, 8%, 44%);
+	--wui-text-04: hsl(240, 8%, 64%);
+	--wui-text-05: hsl(240, 8%, 90%);
+
+	--wui-radius: 0.5rem;
+	--wui-header-height: 4rem;
+	--wui-border: hsl(0, 0%, 77%);
+
+	--wui-primary: hsla(16, 100%, 50%, 1);
+	--wui-secondary: hsla(16, 100%, 30%, 1);
+	--wui-primary-fg: hsl(0, 0%, 96%);
+
+	--wui-header: var(--wui-background);
+	--wui-outline: var(--wui-primary);
+	--wui-foreground: var(--wui-text-01);
+	--wui-background: hsl(0, 0%, 100%);
+
+	color: var(--wui-foreground);
 }
 @font-face {
 	font-family: 'Atkinson';
@@ -43,36 +74,12 @@ body {
 	line-height: 1.7;
 }
 main {
-	width: 720px;
+	/* width: 720px;
 	max-width: calc(100% - 2em);
 	margin: auto;
-	padding: 3em 1em;
+	padding: 3em 1em; */
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
+
 strong,
 b {
 	font-weight: 700;

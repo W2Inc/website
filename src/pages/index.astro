@@ -1,50 +1,119 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+
 ---
 
-<!doctype html>
+<!doctype />
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div id="container"></div>
+    </main>
+    <Footer />
+  </body>
 </html>
+
+<style>
+    main {
+        margin: 0;
+        padding: 0;
+        height: 100dvh;
+        width: 100%;
+
+        & #container {
+            height: 100%;
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+  import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+  export default class Sketch {
+    private container: any;
+    private camera: THREE.PerspectiveCamera;
+    private scene: any;
+    private geometry: any;
+    private material: any;
+    private mesh: any;
+    private renderer: any;
+    private width: number;
+    private time: number;
+    private height: number;
+
+    constructor(options: any) {
+      this.container = options.domElement;
+      this.width = this.container.offsetWidth;
+      this.height = this.container.offsetHeight;
+
+      this.camera = new THREE.PerspectiveCamera(
+        70,
+        this.width / this.height,
+        0.01,
+        10
+      );
+
+      this.camera.position.z = 1;
+
+      this.scene = new THREE.Scene();
+
+      this.renderer = new THREE.WebGLRenderer({ antialias: true });
+      // this.renderer.setPixelRatio(window.devicePixelRatio)
+      this.renderer.setPixelRatio(2);
+
+      this.container.appendChild(this.renderer.domElement);
+      const lel = new OrbitControls(this.camera, this.renderer.domElement);
+      lel.enableZoom = false;
+
+      this.time = 0;
+      this.resize();
+      this.addObjects();
+      this.render();
+
+      this.setupResize();
+    }
+
+    resize() {
+      this.width = this.container.offsetWidth;
+      this.height = this.container.offsetHeight;
+      this.renderer.setSize(this.width, this.height);
+      this.camera.aspect = this.width / this.height;
+      this.camera.updateProjectionMatrix();
+    }
+
+    setupResize() {
+      window.addEventListener("resize", this.resize.bind(this));
+    }
+
+    addObjects() {
+      this.geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+      this.material = new THREE.MeshNormalMaterial();
+
+      this.mesh = new THREE.Mesh(this.geometry, this.material);
+      this.scene.add(this.mesh);
+    }
+
+    render() {
+      this.time += 0.05;
+      this.mesh.rotation.x = this.time / 2000;
+      this.mesh.rotation.y = this.time / 1000;
+
+      this.renderer.render(this.scene, this.camera);
+      // console.log(this.time)
+      requestAnimationFrame(this.render.bind(this));
+    }
+  }
+
+  new Sketch({
+    domElement: document.getElementById("container"),
+  });
+</script>
