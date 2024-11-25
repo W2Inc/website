@@ -3,7 +3,6 @@ import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
 import Header from "../../components/Header.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-
 ---
 
 <html lang="en">
@@ -19,12 +18,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
   </body>
 </html>
 
-<script lang="js" is:inline>
+<script>
   import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
   export default class Sketch {
-    constructor(options) {
+    private container: any;
+    private camera: any;
+    private scene: any;
+    private geometry: any;
+    private material: any;
+    private mesh: any;
+    private renderer: any;
+    private width: number;
+    private time: number;
+    private height: number;
+
+    constructor(options: any) {
       this.container = options.domElement;
       this.width = this.container.offsetWidth;
       this.height = this.container.offsetHeight;
@@ -44,7 +54,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
       this.renderer.setPixelRatio(2);
 
       this.container.appendChild(this.renderer.domElement);
-      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+      new OrbitControls(this.camera, this.renderer.domElement);
 
       this.time = 0;
       this.resize();
