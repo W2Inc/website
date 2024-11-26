@@ -72,12 +72,23 @@ body {
   color: rgb(var(--gray-dark));
   font-size: 20px;
   line-height: 1.7;
+	height: 100dvh;
 }
 .d3 {
   position: absolute !important;
   /*height: 100dvh !important;
     width: 100dvh !important;*/
   z-index: -1 !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
 }
 
 .sr-only {
@@ -99,6 +110,6 @@ body {
 }
 
 @view-transition {
-    navigation: auto;
-    types: slide, forwards;
+  navigation: auto;
+  types: slide, forwards;
 }

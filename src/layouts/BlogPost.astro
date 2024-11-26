@@ -62,17 +62,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     </style>
   </head>
 
-  <body>
+  <body style="background-color: white;">
     <Header />
     <main>
       <article>
-        <div class="hero-image">
+        <!-- <div class="hero-image">
           {
             heroImage && (
-              <img width={1020} height={510} src={heroImage} alt="" />
+              <img width={1020} height={510} src={heroImage} alt="Image" />
             )
           }
-        </div>
+        </div> -->
         <div class="prose markdown-render-body">
           <div class="title">
             <div class="date">
