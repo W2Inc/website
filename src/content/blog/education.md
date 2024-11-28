@@ -1,8 +1,8 @@
 ---
-title: 'Rethinking Education'
-description: 'How education needs to change for the 21st century'
-pubDate: 'Nov 25 2024'
-heroImage: '/blog-placeholder-3.jpg'
+title: "Rethinking Education"
+description: "How education needs to change for the 21st century"
+pubDate: "Nov 25 2024"
+heroImage: "/blog-placeholder-3.jpg"
 ---
 
 Education is one of the core tenets of a functioning society. We all understand the benefits it provides today, as it has been offering the same for over 300 years.
